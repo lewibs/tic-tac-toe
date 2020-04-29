@@ -8,8 +8,6 @@ cName = 'CPU';
 [board,figID] = makeBoard(pName);
 hold on
 
-%open
-
 % decide who goes first
 [p1,p2]=coinToss(pName,cName);
 

@@ -1,4 +1,3 @@
-for runThisGameXtimes = 1:100
 clc;clear;close('all');
 %% prep game
 
@@ -32,8 +31,6 @@ while win==false
      [board,game] = playTurn(p1,typep1,1,board,game);
      win=checkWin(board,1);
      
-     pause(.1)
-     
      if win ~= false
          break
      end
@@ -41,8 +38,6 @@ while win==false
      %player 2
      [board,game] = playTurn(p2,typep2,2,board,game);
      win=checkWin(board,2);
-     
-     pause(.1)
 end
 
 %% end game
@@ -65,4 +60,3 @@ end
 saveResult(win,game);
 
 hold off
-end

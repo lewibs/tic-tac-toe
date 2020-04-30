@@ -8,22 +8,24 @@ fid = fopen('games.txt','r');
 board = zeros(3);
 while ~feof(fid)
     checkGame = fgetl(fid);
-    if strcmp(checkGame(1:strlength(game)),game) %these moves have been done before
-        moves  = checkGame(strlength(game):strlength(game)+2);
-        result = checkGame(end);
-        if result == 3
-            result = 0;
-        elseif result == pNum
-            result = 1;
-        elseif result ~= pNum
-            result = -1;
-        end
-        
-        row = str2num(moves(1));
-        col = str2num(moves(2));
-        
-        board(row,col) = board(row,col)+result;        
-    end 
+    if strlength(checkGame)==strlength(game);
+        if strcmp(checkGame(1:strlength(game)),game) %these moves have been done before
+            moves  = checkGame(strlength(game):strlength(game)+2);
+            result = checkGame(end);
+            if result == 3
+                result = 0;
+            elseif result == pNum
+                result = 1;
+            elseif result ~= pNum
+                result = -1;
+            end
+
+            row = str2num(moves(1));
+            col = str2num(moves(2));
+
+            board(row,col) = board(row,col)+result;        
+        end 
+    end
 end
 
 mx = max(max(board));

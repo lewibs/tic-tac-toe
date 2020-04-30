@@ -3,25 +3,33 @@ function [row,col] = bestOption(pNum,game)
 %	pnum is the number of the player
 %   game is the current game string
 
+pNum = num2str(pNum);
+
+fid = fopen('games.txt','a');
+fclose('all');
 fid = fopen('games.txt','r');
 
 board = zeros(3);
 while ~feof(fid)
     checkGame = fgetl(fid);
-    if strlength(checkGame)==strlength(game);
+    if ~ischar(checkGame)
+        checkGame = 'n';
+    end
+    
+    if strlength(checkGame)>=strlength(game)
         if strcmp(checkGame(1:strlength(game)),game) %these moves have been done before
-            moves  = checkGame(strlength(game):strlength(game)+2);
+            moves  = checkGame(strlength(game)+1:strlength(game)+2);
             result = checkGame(end);
-            if result == 3
+            if result == '3'
                 result = 0;
             elseif result == pNum
-                result = 1;
+                result = 5;
             elseif result ~= pNum
                 result = -1;
             end
 
-            row = str2num(moves(1));
-            col = str2num(moves(2));
+            row = str2double(moves(1));
+            col = str2double(moves(2));
 
             board(row,col) = board(row,col)+result;        
         end 

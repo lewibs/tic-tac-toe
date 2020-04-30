@@ -7,9 +7,9 @@ function [board,figID] = makeBoard(pName)
     xline(-.5);
     xline(.5);
     axis([-1.5 1.5 -1.5 1.5]);
-    set(gca,'XTick',[], 'YTick', [])
+    set(gca,'XTick',[], 'YTick', []);
     
-    title('tic tac toe')
+    title('tic tac toe');
     
     board = zeros(3);
 end

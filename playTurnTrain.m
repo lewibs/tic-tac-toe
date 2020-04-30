@@ -1,4 +1,4 @@
-function [board,game] = playTurn(player,typePlayer,pNum,board,game)
+function [board,game] = playTurnTrain(player,typePlayer,pNum,board,game)
 %this is for doing the player turn either pc or human
 %   player is either the name of the player or CPU
 %   typePlayer is either determines what type of playturn will be used
@@ -16,7 +16,7 @@ function [board,game] = playTurn(player,typePlayer,pNum,board,game)
        title('CPU turn');
        while 1  
             %think
-            [y,x] = bestOption(pNum,game)
+            [y,x] = bestOption(pNum,game);
             
             %place
             if board(y,x)==0
@@ -43,14 +43,14 @@ function [board,game] = playTurn(player,typePlayer,pNum,board,game)
        title('player turn');
        while 1  
             %think
-            [y,x] = bestOption(pNum,game)
-            
+            [y,x] = bestOption(pNum,game);
+
             %place
             if board(y,x)==0
                 board(y,x)=pNum;
-                
+
                 game = saveMove(y,x,game);
-                
+
                 %reset x and y for plot
                 x=x-2;
                 if y == 3
@@ -60,30 +60,12 @@ function [board,game] = playTurn(player,typePlayer,pNum,board,game)
                 else
                     y=1;
                 end
-                
+
                 plot(x,y,marker);
                 break
             end
         end
-%         title('player turn')
-%         [x,y]=ginput(1);
-%         x=round(x);
-%         y=round(y);
-%         plot(x,y,marker);
-%         
-%         %resets x y for putting on board
-%         x=x+2;
-%         if y == -1
-%             y=3;
-%         elseif y==0
-%             y=2;
-%         else
-%             y=1;
-%         end
-%         
-%         board(y,x)=pNum;
-%         
-%         game = saveMove(y,x,game);
+
     end
     
 end

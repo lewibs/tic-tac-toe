@@ -1,4 +1,5 @@
-for runThisGameXtimes = 1:100
+function [] = playTicTacToe() 
+
 clc;clear;close('all');
 %% prep game
 
@@ -6,7 +7,7 @@ pName = 'Player'; %input('input name:','s');
 cName = 'CPU';
 
 % make game board
-[board,figID] = makeBoard(pName);
+[board,~] = makeBoard(pName);
 hold on
 
 % decide who goes first
@@ -29,40 +30,37 @@ game='';
 while win==false
     
     %player 1
-     [board,game] = playTurn(p1,typep1,1,board,game);
+     [board,game] = playTurnPlay(p1,typep1,1,board,game);
      win=checkWin(board,1);
-     
-     pause(.1)
      
      if win ~= false
          break
      end
      
      %player 2
-     [board,game] = playTurn(p2,typep2,2,board,game);
+     [board,game] = playTurnPlay(p2,typep2,2,board,game);
      win=checkWin(board,2);
-     
-     pause(.1)
 end
 
 %% end game
 if win == 1
    if strcmp(p1,'CPU')
-       title('you lost :(')
+       title('you lost :(');
    else
-       title('congrats you won!')
+       title('congrats you won!');
    end
 elseif win == 2
     if strcmp(p2,'CPU')
-       title('you lost :(')
+       title('you lost :(');
    else
-       title('congrats you won!')
+       title('congrats you won!');
    end
 else
-    title("it's a tie!")
+    title("it's a tie!");
 end
 
 saveResult(win,game);
 
 hold off
+
 end

@@ -15,9 +15,9 @@ while ~feof(fid)
 end
 
 if strcmp(copy,'no')
-    fprintf(fid,[game,newline])
+    fprintf(fid,[game,newline]);
 end
 
-fclose(fid)
+fclose(fid);
 
 end

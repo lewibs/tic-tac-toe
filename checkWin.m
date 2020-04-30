@@ -20,7 +20,7 @@ end
 checkBoard = board > 0;
 
 if checkBoard == tie
-    win = 'tie';
+    win = '3';
     return
 end
 

@@ -1,4 +1,4 @@
-function board = playTurn(player,typePlayer,pNum,board)
+function [board,game] = playTurn(player,typePlayer,pNum,board,game)
 %this is for doing the player turn either pc or human
 %   player is either the name of the player or CPU
 %   typePlayer is either determines what type of playturn will be used
@@ -14,14 +14,16 @@ function board = playTurn(player,typePlayer,pNum,board)
 %plays either cpu or player
     if strcmp(typePlayer,'CPU') %plays CPU
        title('CPU turn');
-       while 1 
-            x = randi(3);
-            y = randi(3);
-
+       count = 0;
+       while 1  
+            %think
+            [y,x] = bestOption(count,pNum,board)
+            
+            %place
             if board(y,x)==0
                 board(y,x)=pNum;
                 
-                
+                game = saveMove(y,x,game);
                 
                 %reset x and y for plot
                 x=x-2;
@@ -36,6 +38,7 @@ function board = playTurn(player,typePlayer,pNum,board)
                 plot(x,y,marker);
                 break
             end
+            count = count + 1;
         end
             
     elseif strcmp(typePlayer,'player') %plays Player
@@ -55,7 +58,9 @@ function board = playTurn(player,typePlayer,pNum,board)
             y=1;
         end
         
-        board(y,x)=pNum;  
+        board(y,x)=pNum;
+        
+        game = saveMove(y,x,game);
     end
     
 end

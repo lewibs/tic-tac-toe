@@ -1,10 +1,14 @@
 function [game] = saveMove(row,col,game)
-%saves the last move made into game string
+%saves the last move made
 %   row is the row of the last move
 %   col is the column of the last move
-%   game is the string saving game data
 row=num2str(row);
 col=num2str(col);
-game = [game,row,col];
+
+game = g
+
+% fid = fopen('games.txt','a');
+% fprintf(fid,[row,col]);
+% fclose(fid);
 end
 

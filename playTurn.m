@@ -14,10 +14,9 @@ function [board,game] = playTurn(player,typePlayer,pNum,board,game)
 %plays either cpu or player
     if strcmp(typePlayer,'CPU') %plays CPU
        title('CPU turn');
-       count = 0;
        while 1  
             %think
-            [y,x] = bestOption(count,pNum,board)
+            [y,x] = bestOption(pNum,game)
             
             %place
             if board(y,x)==0
@@ -38,7 +37,6 @@ function [board,game] = playTurn(player,typePlayer,pNum,board,game)
                 plot(x,y,marker);
                 break
             end
-            count = count + 1;
         end
             
     elseif strcmp(typePlayer,'player') %plays Player

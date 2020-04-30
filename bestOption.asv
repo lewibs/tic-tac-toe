@@ -30,14 +30,5 @@ mx = max(max(board));
 
 board = board == mx;
 
-validMove = 0;
-while validMove == 0
-    row = randi(3);
-    col = randi(3);
-    if board(row,col) == 1
-        validMove = 1; 
-    end 
-end
-
 end 
 

@@ -10,3 +10,4 @@ if gameType == 1
 elseif gameType == 2
     trainTicTacToe();
 end
+

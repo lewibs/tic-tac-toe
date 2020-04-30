@@ -10,6 +10,8 @@ fclose('all');
 fid = fopen('games.txt','r');
 
 board = zeros(3);
+boardCurrent = populateBoard(game);
+
 while ~feof(fid)
     checkGame = fgetl(fid);
     if ~ischar(checkGame)
@@ -17,7 +19,8 @@ while ~feof(fid)
     end
     
     if strlength(checkGame)>=strlength(game)
-        if strcmp(checkGame(1:strlength(game)),game) %these moves have been done before
+        boardCheck = populateBoard(checkGame(1:strlength(game)));
+        if boardCheck==boardCurrent %these moves have been done before goes on to pick next best move
             moves  = checkGame(strlength(game)+1:strlength(game)+2);
             result = checkGame(end);
             if result == '3'

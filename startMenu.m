@@ -4,12 +4,14 @@
 clc;clear;close('all');fclose('all');
 
 tic
-gameType = input('would you like to train or play (1=play,2=train)? ');
+gameType = input('would you like to train or play (1=play,2=train,3=clean data)? ');
 
 if gameType == 1
     playTicTacToe();
 elseif gameType == 2
     trainTicTacToe();
+elseif gameType == 3
+    cleanData();
 end
 toc
 

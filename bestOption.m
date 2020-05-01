@@ -28,9 +28,9 @@ while ~feof(fid)
                     if result == '3'
                         result = -1;
                     elseif result == pNum
-                        result = 10;
+                        result = 1;
                     elseif result ~= pNum
-                        result = -5;
+                        result = -10;
                     end
 
                     row = str2double(moves(1));
@@ -38,7 +38,7 @@ while ~feof(fid)
 
                     board(row,col) = board(row,col)+result;        
                 end
-                boardCheck=boardCheck';
+                boardCheck=rot90(boardCheck);
             end
         end
     end
@@ -50,7 +50,7 @@ illegalMoves = boardCurrent > 0;
 
 for i=1:9
     if illegalMoves(i)==1
-        board(i)=-999999;
+        board(i)=-99999999;
     end
 end
 

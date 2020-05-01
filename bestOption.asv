@@ -14,50 +14,49 @@ boardCurrent = populateBoard(game);
 
 while ~feof(fid)
     checkGame = fgetl(fid);
-    if ~ischar(checkGame)
-        checkGame = 'n';
-    end
-    
-    if strlength(checkGame)>=strlength(game)
-        boardCheck = populateBoard(checkGame(1:strlength(game)));
-        if boardCheck==boardCurrent %these moves have been done before goes on to pick next best move
-            moves  = checkGame(strlength(game)+1:strlength(game)+2);
-            result = checkGame(end);
-            if result == '3'
-                result = 0;
-            elseif result == pNum
-                result = 1;
-            elseif result ~= pNum
-                result = -1;
+    if checkGame~=-1
+        if ~ischar(checkGame)
+            checkGame = 'n';
+        end
+
+        if strlength(checkGame)>=strlength(game)
+            boardCheck = populateBoard(checkGame(1:strlength(game)));
+            for i=1:3
+                if boardCheck==boardCurrent %these moves have been done before goes on to pick next best move
+                    moves  = checkGame(strlength(game)+1:strlength(game)+2);
+                    result = checkGame(end);
+                    if result == '3'
+                        result = -1;
+                    elseif result == pNum
+                        result = 1;
+                    elseif result ~= pNum
+                        result = -10;
+                    end
+
+                    row = str2double(moves(1));
+                    col = str2double(moves(2));
+
+                    board(row,col) = board(row,col)+result;        
+                end
+                boardCheck=rot90(boardCheck);
             end
+        end
+    end
+end
 
-            row = str2double(moves(1));
-            col = str2double(moves(2));
 
-            board(row,col) = board(row,col)+result;        
-        end 
+%reset the board wihout illegal moves
+illegalMoves = boardCurrent > 0;
+
+for i=1:9
+    if illegalMoves(i)==1
+        board(i)=-99999999;
     end
 end
 
 mx = max(max(board));
 
-%reset the board wihout illegal moves
-% boardCurrent = boardCurrent > 0;
-% 
-% illegalMoves = boardCurrent==board;
-% 
-% illegalMoves = illegalMoves == boardCurrent;
-
-
-
 board = board == mx; %sets board
-
-
-%fixes the illegal move problems
-% legalMoves = abs(illegalMoves-1);
-% 
-% board = legalMoves == board;
-
 
 validMove = 0;
 while validMove == 0

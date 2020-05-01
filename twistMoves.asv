@@ -1,0 +1,15 @@
+function [row,col] = twistMoves(twists,moves)
+%this twists the next move to be in the right order
+    %twists is the number of times that it has twisted
+    %moves is the move set 1x2
+    if twists == 0
+        row = str2double(moves(1));
+        col = str2double(moves(2));
+    else
+        
+        for i=1:twists
+            rot90()
+        end
+    end
+end
+

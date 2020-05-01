@@ -21,7 +21,7 @@ while ~feof(fid)
 
         if strlength(checkGame)>=strlength(game)
             boardCheck = populateBoard(checkGame(1:strlength(game)));
-            for i=1:3
+            for i=0:3
                 if boardCheck==boardCurrent %these moves have been done before goes on to pick next best move
                     moves  = checkGame(strlength(game)+1:strlength(game)+2);
                     result = checkGame(end);
@@ -33,10 +33,9 @@ while ~feof(fid)
                         result = -10;
                     end
 
-                    row = str2double(moves(1));
-                    col = str2double(moves(2));
+                    [row,col] = twistMoves(i,moves)
 
-                    board(row,col) = board(row,col)+result;        
+                    board(row,col) = board(row,col)+result;
                 end
                 boardCheck=rot90(boardCheck);
             end

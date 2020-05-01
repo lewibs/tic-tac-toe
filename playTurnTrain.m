@@ -23,18 +23,6 @@ function [board,game] = playTurnTrain(player,typePlayer,pNum,board,game)
                 board(y,x)=pNum;
                 
                 game = saveMove(y,x,game);
-                
-                %reset x and y for plot
-                x=x-2;
-                if y == 3
-                    y=-1;
-                elseif y==2
-                    y=0;
-                else
-                    y=1;
-                end
-                
-                plot(x,y,marker);
                 break
             end
         end

@@ -3,7 +3,6 @@ function [] = trainTicTacToe()
 setnumber = input('how many times would you like to trin it? the more you train it the better it gets but the longer it takes to think: ');
 for runthisbabysetnumberoftimes = 1:setnumber
     %% prep game
-    clc;clear;close('all');
 
     pName = 'Player'; %input('input name:','s');
     cName = 'CPU';

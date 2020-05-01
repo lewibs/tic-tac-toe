@@ -3,7 +3,7 @@ function [] = trainTicTacToe()
 setnumber = input('how many times would you like to trin it? the more you train it the better it gets but the longer it takes to think: ');
 for runthisbabysetnumberoftimes = 1:setnumber
     %% prep game
-    clc;clear;close('all');
+    clc;clearvars -except 'runthisbabysetnumberoftimes';close('all');
 
     pName = 'Player'; %input('input name:','s');
     cName = 'CPU';
@@ -35,7 +35,7 @@ for runthisbabysetnumberoftimes = 1:setnumber
          [board,game] = playTurnTrain(p1,typep1,1,board,game);
          win=checkWin(board,1);
 
-         pause(.1);
+         %pause(.1);
 
          if win ~= false
              break
@@ -45,7 +45,7 @@ for runthisbabysetnumberoftimes = 1:setnumber
          [board,game] = playTurnTrain(p2,typep2,2,board,game);
          win=checkWin(board,2);
 
-         pause(.1);
+         %pause(.1);
     end
 
     %% end game
@@ -67,7 +67,9 @@ for runthisbabysetnumberoftimes = 1:setnumber
 
     saveResult(win,game);
 
-end
+% if rem(runthisbabysetnumberoftimes,10)==0    
+%     pause(1);
+% end
 
 title('trianing is finished');
 

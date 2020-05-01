@@ -5,14 +5,18 @@ win = num2str(win);
 game = [game,win];
 copy='no';
 
-fid = fopen('games.txt','a+');
+% fid = fopen('games.txt','r');
+% 
+% while ~feof(fid)
+%     checkGame = fgetl(fid);
+%     if strcmp(checkGame,game)
+%         copy = 'yes';
+%     end
+% end
+% 
+% fclose(fid);
 
-while ~feof(fid)
-    checkGame = fgetl(fid);
-    if strcmp(checkGame,game)
-        copy = 'yes';
-    end
-end
+fid = fopen('games.txt','a');
 
 if strcmp(copy,'no')
     fprintf(fid,[game,newline]);

@@ -3,6 +3,7 @@
 % will take time. Have fun. -Benjamin
 clc;clear;close('all');fclose('all');
 
+tic
 gameType = input('would you like to train or play (1=play,2=train)? ');
 
 if gameType == 1
@@ -10,4 +11,5 @@ if gameType == 1
 elseif gameType == 2
     trainTicTacToe();
 end
+toc
 

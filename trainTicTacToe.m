@@ -35,7 +35,7 @@ for runthisbabysetnumberoftimes = 1:setnumber
          [board,game] = playTurnTrain(p1,typep1,1,board,game);
          win=checkWin(board,1);
 
-         pause(.001);
+         pause(.0001);
 
          if win ~= false
              break
@@ -45,7 +45,7 @@ for runthisbabysetnumberoftimes = 1:setnumber
          [board,game] = playTurnTrain(p2,typep2,2,board,game);
          win=checkWin(board,2);
 
-         pause(.001);
+         pause(.0001);
     end
 
     %% end game

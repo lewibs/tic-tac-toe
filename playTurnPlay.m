@@ -17,13 +17,13 @@ function [board,game] = playTurnPlay(player,typePlayer,pNum,board,game)
        while 1  
             %think
             [y,x] = bestOption(pNum,game);
-            
+
             %place
             if board(y,x)==0
                 board(y,x)=pNum;
-                
+
                 game = saveMove(y,x,game);
-                
+
                 %reset x and y for plot
                 x=x-2;
                 if y == 3
@@ -33,7 +33,7 @@ function [board,game] = playTurnPlay(player,typePlayer,pNum,board,game)
                 else
                     y=1;
                 end
-                
+
                 plot(x,y,marker);
                 break
             end

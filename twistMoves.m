@@ -1,4 +1,4 @@
-function [row,col] = twistMoves(twists,moves)
+function [moves] = twistMoves(twists,moves)
 %this twists the next move to be in the right order
     %twists is the number of times that it has twisted
     %moves is the move set 1x2
@@ -17,5 +17,7 @@ function [row,col] = twistMoves(twists,moves)
         [~,col] = max(col);
         row = find(moves)-(col-1)*3;
     end
+    
+    moves = [num2str(row),num2str(col)];
 end
 

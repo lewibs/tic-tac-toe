@@ -34,7 +34,7 @@ function [board,game] = playTurnTrain(player,typePlayer,pNum,board,game)
                     y=1;
                 end
 
-                plot(x,y,marker);
+                plot(x,y,marker,'MarkerSize',50,'LineWidth',1);
                 break
             end
         end
@@ -61,7 +61,7 @@ function [board,game] = playTurnTrain(player,typePlayer,pNum,board,game)
                     y=1;
                 end
 
-                plot(x,y,marker);
+                plot(x,y,marker,'MarkerSize',50,'LineWidth',1);
                 break
             end
         end

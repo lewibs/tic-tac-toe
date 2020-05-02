@@ -34,7 +34,7 @@ function [board,game] = playTurnPlay(player,typePlayer,pNum,board,game)
                     y=1;
                 end
 
-                plot(x,y,marker);
+                plot(x,y,marker,'MarkerSize',50,'LineWidth',1);
                 break
             end
         end
@@ -44,7 +44,7 @@ function [board,game] = playTurnPlay(player,typePlayer,pNum,board,game)
         [x,y]=ginput(1);
         x=round(x);
         y=round(y);
-        plot(x,y,marker);
+        plot(x,y,marker,'MarkerSize',50,'LineWidth',1);
         
         %resets x y for putting on board
         x=x+2;

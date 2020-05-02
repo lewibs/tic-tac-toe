@@ -66,6 +66,14 @@ for runthisbabysetnumberoftimes = 1:setnumber
     end
 
     saveResult(win,game);
+    
+    pause(.1)
+    
+    fTime = fopen('times.txt','a');
+    time = toc;
+    time = num2str(time);
+    fprintf(fTime,[time,newline]);
+    fclose(fTime);
 
     title('trianing is finished');
 

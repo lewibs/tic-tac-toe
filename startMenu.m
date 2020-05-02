@@ -4,7 +4,7 @@
 clc;clear;close('all');fclose('all');
 
 tic
-gameType = input('would you like to train or play (1=play,2=train,3=clean data)? ');
+gameType = input('would you like to train or play (1=play,2=train)? ');
 
 if gameType == 1
     playTicTacToe();

@@ -14,51 +14,49 @@ ImWin = 0;
 saveBoard = board;
 noValBoard = board>0;
 
-%while ImWin ~=2
-    if pNum == '1'
-        for j =2:-1:1
+if pNum == '1'
+    for j =2:-1:1
+        for i=1:length(wins)
             board = saveBoard == j;
-            for i=1:length(wins)
-                if sum(sum(board == wins{i}))==2
-                    board = board == wins{i};
-                    board = wins{i}-board;
-                    board = board == 1;
-                    playBoard = board;
-                    board = double(board);
-                    board = changem(board,-1,0);
-                    board = board == noValBoard;
-                    if sum(sum(board)) == 0
-                        ImWin=2;
-                        col = max(playBoard);
-                        [~,col] = max(col);
-                        row = find(playBoard)-(col-1)*3;
-                    end
-                end
-            end
-        end
-    elseif pNum == '2'
-        for j =1:1:2
-            board = saveBoard == j;
-            for i=1:length(wins)
-                if sum(sum(board == wins{i}))==2
-                    board = board == wins{i};
-                    board = wins{i}-board;
-                    board = board == 1;
-                    playBoard = board;
-                    board = double(board);
-                    board = changem(board,-1,0);
-                    board = board == noValBoard;
-                    if sum(sum(board)) == 0
-                        ImWin=2;
-                        col = max(playBoard);
-                        [~,col] = max(col);
-                        row = find(playBoard)-(col-1)*3;
-                    end
+            if sum(sum(board == wins{i}))==2
+                board = board == wins{i};
+                board = wins{i}-board;
+                board = board == 1;
+                playBoard = board;
+                board = double(board);
+                board = changem(board,-1,0);
+                board = board == noValBoard;
+                if sum(sum(board)) == 0
+                    ImWin=2;
+                    col = max(playBoard);
+                    [~,col] = max(col);
+                    row = find(playBoard)-(col-1)*3;
                 end
             end
         end
     end
-%end
+elseif pNum == '2'
+    for j =1:1:2
+        board = saveBoard == j;
+        for i=1:length(wins)
+            if sum(sum(board == wins{i}))==2
+                board = board == wins{i};
+                board = wins{i}-board;
+                board = board == 1;
+                playBoard = board;
+                board = double(board);
+                board = changem(board,-1,0);
+                board = board == noValBoard;
+                if sum(sum(board)) == 0
+                    ImWin=2;
+                    col = max(playBoard);
+                    [~,col] = max(col);
+                    row = find(playBoard)-(col-1)*3;
+                end
+            end
+        end
+    end
+end
 
 if ImWin == 2
     %do nothing
@@ -88,7 +86,7 @@ elseif ImWin == 0
                         if result == '3'
                             result = -1;
                         elseif result == pNum
-                            result = 1;
+                            result = 0;
                         elseif result ~= pNum
                             result = -2;
                         end

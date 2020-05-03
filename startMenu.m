@@ -9,9 +9,9 @@ gameType = input('would you like to train or play (1=play,2=train)? ');
 if gameType == 1
     playTicTacToe();
 elseif gameType == 2
-    trainTicTacToe();
-elseif gameType == 3
-    cleanData();
+    if input('I am unsure on the effectvness of trining vs playing it yourself if you would still like to train it press 1: ')==1
+        trainTicTacToe();
+    end
 end
 toc
 

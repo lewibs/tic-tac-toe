@@ -80,10 +80,10 @@ elseif ImWin == 0
                 if strlength(checkGame)>strlength(game)+2
                     moves  = checkGame(strlength(game)+1:strlength(game)+2);
                 end
-                for j = 0:1                   
-                    if j == 1 && exist('moves')
+                for j = 0:1
+                    if j == 1
                         boardCheck = fliplr(boardCheck);
-                        moves = flipMoves(moves);
+                        moves = flipMoves()
                     end
                     i = 1;
                     while i<=4
@@ -103,11 +103,11 @@ elseif ImWin == 0
                         end
                         if exist('moves')
                             moves = twistMoves(1,moves);
-                            if (moves == '22')
-                                i=4;
-                            end
                         end
                         boardCheck=rot90(boardCheck);
+                        if moves == '22'
+                            i=4;
+                        end
                         i=i+1;
                     end
                 end

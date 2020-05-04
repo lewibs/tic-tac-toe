@@ -30,7 +30,7 @@ function [board,game] = playTurnPlay(player,typePlayer,pNum,board,game)
                     y=-1;
                 elseif y==2
                     y=0;
-                else
+                elseif y == 1
                     y=1;
                 end
 

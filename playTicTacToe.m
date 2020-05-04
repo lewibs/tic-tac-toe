@@ -31,7 +31,7 @@ while win==false
     
     %player 1
      [board,game] = playTurnPlay(p1,typep1,1,board,game);
-     win=checkWin(board,1);
+     win=checkWin(board,1,'graph');
      
      if win ~= false
          break
@@ -39,7 +39,7 @@ while win==false
      
      %player 2
      [board,game] = playTurnPlay(p2,typep2,2,board,game);
-     win=checkWin(board,2);
+     win=checkWin(board,2,'graph');
 end
 
 %% end game

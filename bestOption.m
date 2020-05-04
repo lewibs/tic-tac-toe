@@ -3,62 +3,41 @@ function [row,col] = bestOption(pNum,game)
 %	pnum is the number of the player
 %   game is the current game string
 
-pNum = num2str(pNum);
-board = populateBoard(game);
-wins = {[1,1,1;-1,-1,-1;-1,-1,-1],[-1,-1,-1;1,1,1;-1,-1,-1],[-1,-1,-1;-1,-1,-1;1,1,1],...
-       [1,-1,-1;1,-1,-1;1,-1,-1],[-1,1,-1;-1,1,-1;-1,1,-1,],[-1,-1,1;-1,-1,1;-1,-1,1],...
-       [1,-1,-1;-1,1,-1;-1,-1,1],[-1,-1,1;-1,1,-1;1,-1,-1]};
-
 ImWin = 0;
+pNum = num2str(pNum);
 
-saveBoard = board;
-noValBoard = board>0;
+if pNum == '1'
+    j=[2:-1:1];
+elseif pNum == '2'
+    j=[1:2];
+end
 
-% if pNum == '1'
-%     for j =2:-1:1
-%         for i=1:length(wins)
-%             board = saveBoard == j;
-%             if sum(sum(board == wins{i}))==2
-%                 board = board == wins{i};
-%                 board = wins{i}-board;
-%                 board = board == 1;
-%                 playBoard = board;
-%                 board = double(board);
-%                 board = changem(board,-1,0);
-%                 board = board == noValBoard;
-%                 if sum(sum(board)) == 0
-%                     ImWin=2;
-%                     col = max(playBoard);
-%                     [~,col] = max(col);
-%                     row = find(playBoard)-(col-1)*3;
-%                 end
-%             end
-%         end
-%     end
-% elseif pNum == '2'
-%     for j =1:1:2
-%         board = saveBoard == j;
-%         for i=1:length(wins)
-%             if sum(sum(board == wins{i}))==2
-%                 board = board == wins{i};
-%                 board = wins{i}-board;
-%                 board = board == 1;
-%                 playBoard = board;
-%                 board = double(board);
-%                 board = changem(board,-1,0);
-%                 board = board == noValBoard;
-%                 if sum(sum(board)) == 0
-%                     ImWin=2;
-%                     col = max(playBoard);
-%                     [~,col] = max(col);
-%                     row = find(playBoard)-(col-1)*3;
-%                 end
-%             end
-%         end
-%     end
-% end
-
-if ImWin == 2
+if ~strcmp(game,'')
+    for player=j
+        board = populateBoard(game);
+        board = changem(board,-1,player);
+        for i = 1:9
+            checkBoard = board;
+            if board(i)==0
+                checkBoard(i) = max(max(board)); 
+                win = checkWin(checkBoard,max(max(board)),'noGraph');
+                if win ~= 0
+                    winBoard = zeros(3);
+                    winBoard(i) = 1;
+                    
+                    if ~exist('row');   
+                        col = max(winBoard);
+                        [~,col] = max(col);
+                        row = find(winBoard)-(col-1)*3;
+                        ImWin = 1;
+                    end
+                end
+            end
+        end
+    end
+end
+    
+if ImWin == 1
     %do nothing
 elseif ImWin == 0
     fid = fopen('games.txt','a');
@@ -97,8 +76,8 @@ elseif ImWin == 0
                                 result = -1;
                             end
 
-                            row = str2num(moves(1));
-                            col = str2num(moves(2));
+                            row = str2double(moves(1));
+                            col = str2double(moves(2));
                             board(row,col) = board(row,col)+result
                         end
                         if exist('moves')

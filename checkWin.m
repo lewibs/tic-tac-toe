@@ -1,4 +1,4 @@
-function win=checkWin(board,pNum)
+function win=checkWin(board,pNum,graph)
 %this checks the board for any wins
 %   board is the 3x3 board consiting of either 2 or 1
 
@@ -12,6 +12,8 @@ if pNum == 1
     color = 'r';
 elseif pNum == 2
     color = 'b';
+elseif pNum == 0
+    color = '';
 end
     
 checkBoard = board==pNum;
@@ -35,7 +37,9 @@ for i = 1:8
                 elseif row == 1
                     row = 1;
                 end
-                yline(row,color,'LineWidth',4);
+                if strcmp(graph,'graph')
+                    yline(row,color,'LineWidth',4);
+                end
             elseif (max((checkBoard == posibleWins{i})'))==(max((checkBoard == posibleWins{i})))
                 %diagonal
                 col = max((checkBoard) == posibleWins{i});
@@ -66,8 +70,9 @@ for i = 1:8
                     x=[-1.5:1.5];
                     y=[1.5:-1:-1.5];
                 end
-                
-                plot(x,y,color,'LineWidth',4)
+                if strcmp(graph,'graph')
+                    plot(x,y,color,'LineWidth',4)
+                end
             end
         else
             %vertical
@@ -81,7 +86,9 @@ for i = 1:8
             elseif col == 1
                 col = -1;
             end
-            xline(col,color,'LineWidth',4);
+            if strcmp(graph,'graph')
+                xline(col,color,'LineWidth',4);
+            end
         end
         
         return
